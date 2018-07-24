@@ -1,15 +1,56 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
+import Home from './Home'
+import Login from './Login'
+import About from './About'
+import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
 
-const Home = () => {
-  return (
-    <div>
-      <h1>Home!</h1>
-    </div>
-  );
-};
+const link = {
+  width: '100px',
+  pading: '12px',
+  margin: '0 6px 6px',
+  background: 'blue',
+  textDecoration: 'none',
+  color: 'white',
+}
 
-ReactDOM.render(
-  <Home />,
+const Navbar = () =>
+  <div>
+    <NavLink
+      to="/"
+      exact
+      style={link}
+      activeStyle={{
+        background: 'darkblue'
+      }}
+    >Home</NavLink>
+  <NavLink
+    to="/about"
+    exact
+    style={link}
+    activeStyle={{
+      background: 'darkblue'
+    }}
+  >About</NavLink>
+  <NavLink
+    to="/login"
+    exact
+    style={link}
+    activeStyle={{
+      background: 'darkblue'
+    }}
+    >Login</NavLink>
+</div>;
+
+
+ReactDOM.render((
+  <Router>
+    <Fragment>
+      <Navbar />
+      <Route exact path="/" component={Home} />
+      <Route exact path="/about" component={About} />
+      <Route exact path="/login" component={Login} />
+    </Fragment>
+  </Router>),
   document.getElementById('root')
 );
